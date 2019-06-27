@@ -20656,7 +20656,7 @@ metadata:
     release: prometheus-operator
     heritage: Tiller
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
     - name: service
       port: 80
@@ -21299,7 +21299,10 @@ spec:
   replicas: 1
   listenLocal: false
   serviceAccountName: prometheus-operator-alertmanager
-  externalUrl: http://prometheus-operator-alertmanager.prometheus-operator:9093
+  externalUrl: http://206.189.242.98/alertmanager
+  resources:
+    requests:
+        memory: 400Mi
   paused: false
   logLevel:  "info"
   retention: "120h"
