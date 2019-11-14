@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: netdata/netdata
-  tag: v1.17.1
+  tag: v1.18.1
   pullPolicy: Always
 
 sysctlImage:
@@ -31,7 +31,8 @@ ingress:
 
 rbac:
   create: true
-
+  pspEnabled: true
+  
 serviceAccount:
   create: true
   name: netdata
@@ -60,12 +61,14 @@ master:
 
   database:
     persistence: true
-    storageclass: "standard"
+    # Set '-' as the storageclass to get a volume from the default storage class.
+    storageclass: "-"
     volumesize: 2Gi
 
   alarms:
     persistence: true
-    storageclass: "standard"
+    # Set '-' as the storageclass to get a volume from the default storage class.
+    storageclass: "-"
     volumesize: 100Mi
 
   configs:
